@@ -1,2 +1,2 @@
 #!/bin/bash
-mv src/*[A-Z]* /tmp/u/
+find . -name '[[:upper:]]*' -exec mv -t /tmp/u/ {} +

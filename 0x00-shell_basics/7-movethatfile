@@ -1,2 +1,3 @@
 #!/bin/bash
-mv betty /tmp/my_first_directory
+touch /tmp/betty
+mv betty /tmp/my_first_directory/

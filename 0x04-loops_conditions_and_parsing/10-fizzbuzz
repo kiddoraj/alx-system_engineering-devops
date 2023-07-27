@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Loop from 1 to 100
+for (( num=1; num<=100; num++ ))
+do
+  # Check if the number is a multiple of both 3 and 5 (FizzBuzz)
+  if (( num % 3 == 0 && num % 5 == 0 )); then
+    echo "FizzBuzz"
+  # Check if the number is a multiple of 3 (Fizz)
+  elif (( num % 3 == 0 )); then
+    echo "Fizz"
+  # Check if the number is a multiple of 5 (Buzz)
+  elif (( num % 5 == 0 )); then
+    echo "Buzz"
+  # For other numbers, simply display the number
+  else
+    echo "$num"
+  fi
+done

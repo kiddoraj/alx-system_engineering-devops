@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Initialize the counter
+counter=1
+
+# Loop using while loop
+while [ $counter -le 20 ]
+do
+  case $counter in
+    4)
+      echo "4 and then bad luck from China"
+      ;;
+    9)
+      echo "9 and then bad luck from Japan"
+      ;;
+    17)
+      echo "17 and then bad luck from Italy"
+      ;;
+    *)
+      echo $counter
+      ;;
+  esac
+
+  (( counter++ ))
+done

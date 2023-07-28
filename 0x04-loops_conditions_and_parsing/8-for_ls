@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Write a Bash script that displays:The content of the current directoryIn a list format
 # Loop through the files in the current directory
 for file in *; do
   # Check if the file is not a hidden file (does not start with a dot)

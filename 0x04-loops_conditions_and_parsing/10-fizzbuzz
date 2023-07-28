@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#write a Bash script that groups visitors by IP and HTTP status code, and displays this data.
 # Loop from 1 to 100
 for (( num=1; num<=100; num++ ))
 do

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#A Write a Bash script that loops from 1 to 10 and:
 # Initialize the counter
 counter=1
 

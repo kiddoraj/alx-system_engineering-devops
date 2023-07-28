@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#A Bash script that displays Best School 10 times
 # Initialize the counter
 counter=1
 

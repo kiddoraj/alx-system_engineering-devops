@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Write a Bash script that displays the content of the file /etc/passwd.
 # Read /etc/passwd line by line and extract required information
 while IFS=: read -r username _ uid gid info home shell; do
   echo "The user $username is part of the $gid gang,"

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# Displays 'Best School' in stdout 10 times using a while loop
 # Initialize the counter
 counter=1
 

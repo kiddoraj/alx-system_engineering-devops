@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script kills the process with the name "7-highlander" using the SIGKILL signal.
+
+# Use 'pkill' with '-f' option and '-SIGKILL' option to find and terminate the process based on the pattern
+pkill -SIGKILL -f 7-highlander

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script kills the 4-to_infinity_and_beyond process.
+
+# Use 'pkill' with '-f' option to find and terminate the process based on the pattern
+pkill -f 7-highlander

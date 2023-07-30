@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script displays "To infinity and beyond" indefinitely with a 2-second delay between each iteration.
+
+# Function to handle the SIGINT signal (Ctrl+C)
+function on_interrupt() {
+    echo  # Newline to avoid interrupting the current line
+    exit 0
+}
+
+# Trap the SIGINT signal and call the on_interrupt function
+trap on_interrupt SIGINT
+
+# Infinite loop with a 2-second delay between each iteration
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done

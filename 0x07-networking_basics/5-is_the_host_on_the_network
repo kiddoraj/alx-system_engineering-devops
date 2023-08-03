@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Pings an IP address received as a string argument 5 times.
+
+# Check if the number of command-line arguments is 0 (no IP address provided).
+if [ "$#" -eq 0 ]; then
+  echo "Usage: $0 {IP_ADDRESS}"
+else
+  # Use the 'ping' command with '-c' option to send 5 ICMP echo requests to the specified IP address.
+  ping -c 5 "$1"
+fi

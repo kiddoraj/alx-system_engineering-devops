@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script configures the DNS resolution on an Ubuntu server.
+
+# Check if the script is running with root privileges
+if [ "$(id -u)" -ne 0 ]; then
+    echo "Please run the script as root or using sudo."
+    exit 1
+fi
+
+# Update the /etc/hosts file to set localhost resolution to 127.0.0.2
+echo "127.0.0.2 localhost" >> /etc/hosts
+
+# Update the /etc/hosts file to set facebook.com resolution to 8.8.8.8
+echo "8.8.8.8 facebook.com" >> /etc/hosts
+
+echo "DNS configuration completed successfully."

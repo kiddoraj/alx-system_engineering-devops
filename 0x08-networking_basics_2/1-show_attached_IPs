@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script displays all active IPv4 addresses on the machine.
+
+# Use the 'ifconfig' command to get network interface information.
+# The 'grep' command with the '-Eo' option searches for lines containing an IPv4 address pattern.
+# The pattern is a regular expression that matches strings in the form of 'inet addr:<IP>' or '<IP>'.
+# The 'cut' command is used to extract only the IP addresses from the matched lines.
+# The '-b' option specifies the byte range to cut, starting from the 11th byte to the end of the line.
+ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 11-

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# This is a script that generates a KRA key pair with a passphrase
+
+ssh-keygen -b 4096 -f school -t rsa -N betty

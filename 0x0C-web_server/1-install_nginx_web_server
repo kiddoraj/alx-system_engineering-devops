@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Update package information and install Nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Check if Nginx installation was successful
+if [ $? -eq 0 ]; then
+    echo "Nginx installed successfully."
+else
+    echo "Nginx installation failed."
+    exit 1
+fi
+
+# Create a simple HTML file with "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+
+# Check if the index.html file was created successfully
+if [ -e /var/www/html/index.html ]; then
+    echo "Created index.html with 'Hello World!' content."
+else
+    echo "Failed to create index.html."
+    exit 1
+fi
+
+# Restart Nginx without using systemctl
+# Use the service command instead to restart Nginx
+sudo service nginx restart
+
+# Check if Nginx is listening on port 80
+netstat -tuln | grep ':80'
+
+# Check if Nginx is responding with "Hello World!" at root /
+response=$(curl -s http://localhost)
+if [[ $response == *"Hello World!"* ]]; then
+    echo "Nginx is listening on port 80 and returns 'Hello World!' at root."
+else
+    echo "Nginx may not be configured correctly."
+fi

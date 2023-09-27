@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-# This line specifies the interpreter for the script, which is /usr/bin/env bash.
-# transfer a file from our client to a server
-# This is a comment that briefly describes the purpose of the script.
-
 # Check the number of command-line arguments passed to the script
 if [ $# -lt 3 ];
 then
@@ -14,20 +10,9 @@ fi
 # Check if a fourth argument (SSH key path) is provided
 if [ $# -ge 4 ];
 then
-    # If 4 or more arguments are provided, use the provided SSH key for scp.
-    # The -o option is used to set the StrictHostKeyChecking option to 'no,' disabling host key checking.
-    # The -i option specifies the path to the SSH private key.
-    # The first argument ($1) is the path to the file to be transferred.
-    # The third argument ($3) is the username for the SSH connection.
-    # The second argument ($2) is the IP address of the server.
-    # Finally, the file is transferred to the remote user's home directory (~) on the server.
+   
     scp -o StrictHostKeyChecking=no -i "$4" "$1" "$3"@"$2":~/
 else
-    # If 3 arguments are provided (no SSH key path), use scp without an SSH key.
-    # The -o option is used to set the StrictHostKeyChecking option to 'no,' disabling host key checking.
-    # The first argument ($1) is the path to the file to be transferred.
-    # The third argument ($3) is the username for the SSH connection.
-    # The second argument ($2) is the IP address of the server.
-    # Finally, the file is transferred to the remote user's home directory (~) on the server.
+ 
     scp -o StrictHostKeyChecking=no "$1" "$3"@"$2":~/
 fi

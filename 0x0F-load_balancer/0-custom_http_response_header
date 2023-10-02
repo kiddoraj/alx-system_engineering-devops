@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# This script configures Nginx with a custom HTTP response header
+
+# Install Nginx if not already installed
+# Update package list and install Nginx
+apt-get update
+apt-get install -y nginx
+
+# Create web content directory and files
+mkdir -p /var/www/html                # Create the directory for web content
+touch /var/www/html/index.html       # Create an index.html file with "Hello World" content
+echo "Hello World" > /var/www/html/index.html
+touch /var/www/html/404.html         # Create a 404.html file with custom content
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# Configure Nginx server block
+printf %s "server {
+    listen 80 default_server;           # Listen on port 80 (HTTP) as the default server
+    listen [::]:80 default_server;      # Listen on IPv6
+    add_header X-Served-By \$HOSTNAME;  # Add custom HTTP header with the server's hostname
+    root   /var/www/html;              # Set the root directory for web content
+    index  index.html index.htm;       # Define default index files
+
+    location /redirect_me {
+        return 301 http://cuberule.com/;  # Redirect to cuberule.com when accessing /redirect_me
+    }
+
+    error_page 404 /404.html;           # Define custom 404 error page
+    location /404 {
+      root /var/www/html;
+      internal;
+    }
+}" > /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the new configuration
+service nginx restart

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script is designed to fix the issue of Nginx not listening on port 80.
+
+# Navigate to the /etc/nginx/sites-enabled/ directory or exit if it doesn't exist
+cd /etc/nginx/sites-enabled/ || exit;
+
+# Remove the existing default configuration file (if it exists)
+rm default;
+
+# Create a symbolic link to the default configuration from the sites-available directory
+ln -s /etc/nginx/sites-available/default default;
+
+# Restart the Nginx service to apply the new configuration
+service nginx restart
+

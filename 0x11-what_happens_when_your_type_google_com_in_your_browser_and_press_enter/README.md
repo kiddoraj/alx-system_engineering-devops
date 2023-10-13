@@ -32,7 +32,7 @@ Requirements, your post must cover:
 - Application server
 - Database
 
-Click [here](http://https://www.linkedin.com/pulse/exploring-journey-web-request-from-typing-pressing-enter-ishaq-rajab) to read my article.
+Click [here](https://www.linkedin.com/pulse/exploring-journey-web-request-from-typing-pressing-enter-ishaq-rajab) to read my article.
 
 ### Task 1
 Add a schema to your blog post illustrating the flow of the request created when you type https://www.google.com in your browser and press Enter.\

@@ -1,0 +1,11 @@
+# Open ufw config file
+sudo nano /etc/ufw/before.rules
+
+# Add a port forwarding rule
+*nat
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+COMMIT
+
+# Reload ufw
+sudo ufw reload

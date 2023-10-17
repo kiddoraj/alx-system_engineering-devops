@@ -1,19 +1,7 @@
 #!/usr/bin/env bash
-# Install Nginx if not already installed
-if ! [ -x "$(command -v nginx)" ]; then
-  apt-get update
-  apt-get install -y nginx
-fi
-
-# Set Nginx to run as the nginx user
-sed -i 's/user www-data;/user nginx;/' /etc/nginx/nginx.conf
-
-# Update the default Nginx configuration to listen on port 8080 for all IPs
-sed -i 's/listen 80 default_server;/listen 8080 default_server;/' /etc/nginx/sites-available/default
-
-# Restart Nginx to apply the changes
-service nginx restart
-
-# Output a message indicating the setup is complete
-echo "Nginx is now running as the nginx user and listening on port 8080 for all active IPs."
-
+# Fixes a web server to run Nginx as the nginx user listening on port 8080.
+sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+chmod 644 /etc/nginx/nginx.conf
+pkill apache2
+sudo -u nginx service nginx start

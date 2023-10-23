@@ -3,9 +3,10 @@
 Module to fetch employee TODO list progress and export it to a CSV file.
 """
 
-import sys
-import requests
 import csv
+import requests
+import sys
+
 
 def fetch_todo_list(employee_id):
     """
@@ -22,7 +23,8 @@ def fetch_todo_list(employee_id):
         user_response = requests.get(user_url)
         todo_response = requests.get(todo_url)
 
-        if user_response.status_code != 200 or todo_response.status_code != 200:
+        if (user_response.status_code != 200 or
+                todo_response.status_code != 200):
             print("Error: Unable to fetch data from the API.")
             return
 
@@ -38,16 +40,28 @@ def fetch_todo_list(employee_id):
             csv_writer = csv.writer(csv_file)
 
             # Write CSV header
-            csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+            csv_writer.writerow([
+                "USER_ID",
+                "USERNAME",
+                "TASK_COMPLETED_STATUS",
+                "TASK_TITLE"
+            ])
 
             for task in todo_data:
                 task_completed = "Yes" if task["completed"] else "No"
-                csv_writer.writerow([user_data["id"], employee_name, task_completed, task["title"]])
+                csv_writer.writerow([
+                    user_data["id"],
+                    employee_name,
+                    task_completed,
+                    task["title"]
+                ])
 
-        print(f"Employee {employee_name}'s tasks have been exported to {csv_filename}")
+        print(f"Employee {employee_name}'s tasks have"
+              "been exported to {csv_filename}")
 
     except requests.exceptions.RequestException as e:
         print(f"Request Error: {e}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -56,4 +70,3 @@ if __name__ == "__main__":
 
     employee_id = int(sys.argv[1])
     fetch_todo_list(employee_id)
-

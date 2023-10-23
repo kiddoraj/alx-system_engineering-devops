@@ -3,8 +3,9 @@
 Module to fetch and display employee TODO list progress using a REST API.
 """
 
-import sys
 import requests
+import sys
+
 
 def fetch_todo_list(employee_id):
     """
@@ -21,7 +22,8 @@ def fetch_todo_list(employee_id):
         user_response = requests.get(user_url)
         todo_response = requests.get(todo_url)
 
-        if user_response.status_code != 200 or todo_response.status_code != 200:
+        if (user_response.status_code != 200 or
+                todo_response.status_code != 200):
             print("Error: Unable to fetch data from the API.")
             return
 
@@ -32,12 +34,14 @@ def fetch_todo_list(employee_id):
         total_tasks = len(todo_data)
         done_tasks = [task for task in todo_data if task["completed"]]
 
-        print(f"Employee {employee_name} is done with tasks ({len(done_tasks)}/{total_tasks}):")
+        print(f"Employee {employee_name} is done with "
+              f"tasks ({len(done_tasks)}/{total_tasks}):")
         for task in done_tasks:
             print(f"\t{task['title']}")
 
     except requests.exceptions.RequestException as e:
         print(f"Request Error: {e}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -46,4 +50,3 @@ if __name__ == "__main__":
 
     employee_id = int(sys.argv[1])
     fetch_todo_list(employee_id)
-

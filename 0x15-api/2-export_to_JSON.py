@@ -3,9 +3,10 @@
 Module to fetch employee TODO list progress and export it to a JSON file.
 """
 
-import sys
-import requests
 import json
+import requests
+import sys
+
 
 def fetch_todo_list(employee_id):
     """
@@ -22,7 +23,8 @@ def fetch_todo_list(employee_id):
         user_response = requests.get(user_url)
         todo_response = requests.get(todo_url)
 
-        if user_response.status_code != 200 or todo_response.status_code != 200:
+        if (user_response.status_code != 200 or
+                todo_response.status_code != 20)0:
             print("Error: Unable to fetch data from the API.")
             return
 
@@ -33,16 +35,20 @@ def fetch_todo_list(employee_id):
         # Prepare JSON file name based on USER_ID
         json_filename = f"{employee_id}.json"
 
-        tasks = [{"task": task["title"], "completed": task["completed"], "username": employee_name} for task in todo_data]
+        tasks = [{"task": task["title"], "completed": task["completed"],
+                  "username": employee_name} for task in todo_data]
         data = {user_data["id"]: tasks}
 
         with open(json_filename, 'w') as json_file:
             json.dump(data, json_file, indent=4)
 
-        print(f"Employee {employee_name}'s tasks have been exported to {json_filename}")
+        print(
+            f"Employee {employee_name}'s tasks have "
+            "been exported to {json_filename}")
 
     except requests.exceptions.RequestException as e:
         print(f"Request Error: {e}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

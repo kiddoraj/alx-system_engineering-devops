@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 # Gracefully reloads Gunicorn.
-ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
+pids=$(pgrep gunicorn)
+if [ -n "$pids" ]; then
+    kill -HUP "$pids"
+else
+    echo "No gunicorn process found."
+fi
